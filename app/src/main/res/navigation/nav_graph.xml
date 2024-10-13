@@ -10,29 +10,44 @@
         android:name="com.example.todolistxml.fragments.ListFragment"
         android:label="List Fragment"
         tools:layout="@layout/fragment_list" >
+
         <action
             android:id="@+id/action_listFragment_to_updateFragment"
-            app:destination="@id/updateFragment" />
+            app:destination="@id/updateFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right"
+            app:popEnterAnim="@anim/from_right"
+            app:popExitAnim="@anim/to_left" />
         <action
-            android:id="@+id/action_listFragment_to_editFragment"
-            app:destination="@id/editFragment" />
+            android:id="@+id/action_listFragment_to_addFragment"
+            app:destination="@id/addFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left"
+            app:popEnterAnim="@anim/from_left"
+            app:popExitAnim="@anim/to_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/addFragment"
+        android:name="com.example.todolistxml.fragments.AddFragment"
+        android:label="Add Fragment"
+        tools:layout="@layout/fragment_add" >
+
+        <action
+            android:id="@+id/action_addFragment_to_listFragment"
+            app:destination="@id/listFragment"
+            app:enterAnim="@anim/from_left"
+            app:exitAnim="@anim/to_right" />
     </fragment>
     <fragment
         android:id="@+id/updateFragment"
         android:name="com.example.todolistxml.fragments.UpdateFragment"
         android:label="Update Fragment"
         tools:layout="@layout/fragment_update" >
+
         <action
             android:id="@+id/action_updateFragment_to_listFragment"
-            app:destination="@id/listFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/editFragment"
-        android:name="com.example.todolistxml.fragments.EditFragment"
-        android:label="Edit Fragment"
-        tools:layout="@layout/fragment_edit" >
-        <action
-            android:id="@+id/action_editFragment_to_listFragment"
-            app:destination="@id/listFragment" />
+            app:destination="@id/listFragment"
+            app:enterAnim="@anim/from_right"
+            app:exitAnim="@anim/to_left" />
     </fragment>
 </navigation>
