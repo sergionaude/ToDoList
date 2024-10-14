@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.todolistxml.R
 import com.example.todolistxml.databinding.FragmentUpdateBinding
+import com.example.todolistxml.utils.getAdapter
 
 class UpdateFragment : Fragment() {
     private var editBinding: FragmentUpdateBinding? = null
@@ -20,7 +21,11 @@ class UpdateFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         editBinding = FragmentUpdateBinding.inflate(layoutInflater)
+
+        editBinding?.currentPriority?.onItemSelectedListener = getAdapter(requireContext())
+
         setHasOptionsMenu(true)
+
         return editBinding?.root
     }
 

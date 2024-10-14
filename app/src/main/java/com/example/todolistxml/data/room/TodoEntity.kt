@@ -6,7 +6,7 @@ import com.example.todolistxml.data.model.Priority
 
 @Entity(tableName = "todo_table")
 data class TodoEntity(
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     val id: Int,
     val title: String,
     val priority: Priority,

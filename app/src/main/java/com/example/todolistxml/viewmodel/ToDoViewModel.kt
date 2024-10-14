@@ -17,7 +17,7 @@ class ToDoViewModel(
 
     private val repository: ToDoRepository
 
-    private val getAllTodo: LiveData<List<TodoEntity>>
+    val getAllTodo: LiveData<List<TodoEntity>>
 
     init {
         repository = ToDoRepository(todoDAO = todoDao)
@@ -25,7 +25,7 @@ class ToDoViewModel(
         getAllTodo = repository.getAllData()
     }
 
-    fun insertToDo(todoEntity: TodoEntity)  {
+    fun insertToDo(todoEntity: TodoEntity) {
         viewModelScope.launch(Dispatchers.IO) {
             repository.insertData(todoEntity = todoEntity)
         }

@@ -12,9 +12,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.todolistxml.R
-import com.example.todolistxml.data.model.Priority
 import com.example.todolistxml.data.room.TodoEntity
 import com.example.todolistxml.databinding.FragmentAddBinding
+import com.example.todolistxml.utils.dataValidation
+import com.example.todolistxml.utils.getAdapter
+import com.example.todolistxml.utils.parsePriority
 import com.example.todolistxml.viewmodel.ToDoViewModel
 
 class AddFragment : Fragment() {
@@ -28,6 +30,8 @@ class AddFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         updateBinding = FragmentAddBinding.inflate(layoutInflater)
+
+        updateBinding?.spinnerPriority?.onItemSelectedListener = getAdapter(requireContext())
 
         setHasOptionsMenu(true)
 
@@ -50,7 +54,7 @@ class AddFragment : Fragment() {
 
     private fun insertDataToDB() {
         val mTitle = updateBinding?.etTitle?.text.toString()
-        val mPriority = updateBinding?.spinnerPriority.toString()
+        val mPriority = updateBinding?.spinnerPriority?.selectedItem.toString()
         val mDescription = updateBinding?.etDescription?.text.toString()
 
         val validation = dataValidation(mTitle, mDescription)
@@ -70,17 +74,4 @@ class AddFragment : Fragment() {
             Toast.makeText(context, "An error has happen", Toast.LENGTH_SHORT).show()
         }
     }
-
-    private fun dataValidation(
-        mTitle: String,
-        mDescription: String,
-    ): Boolean = !(mTitle.isEmpty() || mDescription.isEmpty())
-
-    private fun parsePriority(priority: String): Priority =
-        when (priority) {
-            "High Priority" -> Priority.HIGH
-            "Medium Priority" -> Priority.MEDIUM
-            "Low Priority" -> Priority.LOW
-            else -> Priority.LOW
-        }
 }

@@ -12,10 +12,11 @@
     <string name="menu_add">Add</string>
     <string name="update_fragment_menu_save">Save</string>
     <string name="update_fragment_menu_delete">Delete</string>
-    <string-array name="priority">
-        <item>High</item>
-        <item>Medium</item>
-        <item>Low</item>
+
+    <string-array name="priorities">
+        <item>High Priority</item>
+        <item>Medium Priority</item>
+        <item>Low Priority</item>
     </string-array>
 
 </resources>
